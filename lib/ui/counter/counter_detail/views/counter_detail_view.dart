@@ -105,6 +105,7 @@ class _CounterDetailViewState extends State<CounterDetailView> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.red,
+          duration: Duration(seconds: 2),
           content:
               Text(_divisionViewModel.errorMessage ?? 'bilinmeyen bir hata'),
         ),
