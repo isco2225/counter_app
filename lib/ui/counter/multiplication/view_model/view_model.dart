@@ -1,0 +1,1 @@
+export 'mutliplication_view_model.dart';
