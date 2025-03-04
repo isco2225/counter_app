@@ -1,4 +1,4 @@
-import 'package:counter_app/ui/counter/subtraction/view_model/view_model.dart';
+import 'package:counter_app/ui/counter/subtract_counter/view_model/view_model.dart';
 import 'package:flutter/material.dart';
 
 class SubtractionButton extends StatelessWidget {

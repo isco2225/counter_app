@@ -1,4 +1,4 @@
-import 'package:counter_app/ui/counter/multiplication/view_model/view_model.dart';
+import 'package:counter_app/ui/counter/multiplicat_counter/view_model/view_model.dart';
 import 'package:flutter/material.dart';
 
 class MultiplicationButton extends StatelessWidget {

@@ -1,6 +1,6 @@
-export 'addition/addition.dart';
-export 'counter_clearer/counter_clearer.dart';
+export 'add_counter/addition.dart';
+export 'clear_counter/counter_clearer.dart';
 export 'counter_detail/counter_detail.dart';
-export 'division/division.dart';
-export 'multiplication/multiplication.dart';
-export 'subtraction/subtraction.dart';
+export 'division_counter/division.dart';
+export 'multiplicat_counter/multiplication.dart';
+export 'subtract_counter/subtraction.dart';

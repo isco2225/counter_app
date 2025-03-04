@@ -1,4 +1,4 @@
-import 'package:counter_app/ui/counter/division/view_model/division_view_model.dart';
+import 'package:counter_app/ui/counter/division_counter/view_model/division_view_model.dart';
 import 'package:flutter/material.dart';
 
 class DivisionButton extends StatelessWidget {

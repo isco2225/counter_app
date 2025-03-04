@@ -1,4 +1,4 @@
-import 'package:counter_app/ui/counter/addition/view_model/addition_view_model.dart';
+import 'package:counter_app/ui/counter/add_counter/view_model/addition_view_model.dart';
 import 'package:flutter/material.dart';
 
 class AdditionButton extends StatelessWidget {
