@@ -21,7 +21,7 @@ class DivisionViewModel extends ChangeNotifier {
   int get counter => _counterRepository.counter;
 
   Future<Result> _division() async {
-    if (counter == 0) {
+   /* if (counter == 0) {
       errorMessage = "Sıfır ile bölünemez.";
       notifyListeners();
       return Result.error(Exception(errorMessage));
@@ -30,7 +30,7 @@ class DivisionViewModel extends ChangeNotifier {
       errorMessage = "İkiye tam bölünmüyor.";
       notifyListeners();
       return Result.error(Exception(errorMessage));
-    }
+    }*/
 
     final result = await _counterRepository.division();
     if (result is Error<void>) {

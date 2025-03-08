@@ -1,63 +1,70 @@
+import 'dart:async';
 import 'package:counter_app/app/utils/result.dart';
 import 'package:counter_app/data/repositories/counter/counter_repository.dart';
+import 'package:counter_app/data/services/shared_preferences_service.dart';
 
 class CounterRepositoryRemote extends CounterRepository {
+  CounterRepositoryRemote({
+    required SharedPreferencesService sharedPreferencesService,
+  }) : _sharedPreferencesService = sharedPreferencesService;
+
+  static const _counterKey = 'COUNTER';
+
+  final SharedPreferencesService _sharedPreferencesService;
+
+  int _counter = 0;
   @override
   int get counter => _counter;
-  int _counter = 0;
 
   @override
-  Future<Result> addition() async {
+  Future<Result<int>> getCounter() async {
     try {
-      _counter += 1;
-      notifyListeners();
-      return Result.ok(null);
-    } catch (e) {
-      return Result.error(Exception("Failed to add: $e"));
+      final result =
+          await _sharedPreferencesService.getIntager(key: _counterKey);
+      switch (result) {
+        case Ok():
+          _counter = result.value;
+          notifyListeners();
+          return Result.ok(_counter);
+        case Error():
+          return Result.error(result.error);
+      }
+    } on Exception catch (e) {
+      return Result.error(e);
     }
   }
 
-  @override
-  Future<Result> subtraction() async {
+  Future<Result> _updateCounter(int newValue) async {
     try {
-      _counter -= 1;
-      notifyListeners();
-      return Result.ok(null);
-    } catch (e) {
-      return Result.error(Exception("Failed to subtract: $e"));
+      final result = await _sharedPreferencesService.saveIntager(
+        key: _counterKey,
+        counter: newValue,
+      );
+      switch (result) {
+        case Ok():
+          _counter = newValue;
+          notifyListeners();
+          return Result.ok(null);
+        case Error():
+          return Result.error(result.error);
+      }
+    } on Exception catch (e) {
+      return Result.error(e);
     }
   }
 
   @override
-  Future<Result> multiplication() async {
-    try {
-      _counter *= 2;
-      notifyListeners();
-      return Result.ok(null);
-    } catch (e) {
-      return Result.error(Exception("Failed to multiplicate: $e"));
-    }
-  }
+  Future<Result> addition() async => await _updateCounter(_counter + 1);
 
   @override
-  Future<Result> division() async {
-    try { 
-      _counter ~/= 2;
-      notifyListeners();
-      return Result.ok(null);
-    } catch (e) {
-      return Result.error(Exception("Failed to multiplicate: $e"));
-    }
-  }
+  Future<Result> subtraction() async => await _updateCounter(_counter - 1);
 
   @override
-  Future<Result> clearCounter() async {
-    try {
-      _counter = 0;
-      notifyListeners();
-      return Result.ok(null);
-    } catch (e) {
-      return Result.error(Exception("Failed to clear: $e"));
-    }
-  }
+  Future<Result> multiplication() async => await _updateCounter(_counter * 2);
+
+  @override
+  Future<Result> division() async => await _updateCounter(_counter ~/ 2);
+
+  @override
+  Future<Result> clearCounter() async => await _updateCounter(0);
 }

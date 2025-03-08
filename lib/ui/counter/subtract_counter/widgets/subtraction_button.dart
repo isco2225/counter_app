@@ -10,6 +10,7 @@ class SubtractionButton extends StatelessWidget {
     return IconButton(
       iconSize: 50,
       onPressed: () {
+        print('subtractionButton');
         viewModel.subtract.execute();
       },
       icon: Icon(

@@ -6,6 +6,7 @@ class CounterDisplayer extends StatelessWidget {
     required this.counter,
   });
   final String counter;
+  
 
   @override
   Widget build(BuildContext context) {

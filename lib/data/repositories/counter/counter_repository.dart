@@ -8,4 +8,5 @@ abstract class CounterRepository extends ChangeNotifier {
   Future<Result> multiplication();
   Future<Result> division();
   Future<Result> clearCounter();
+  Future<Result<int>> getCounter();
 }
