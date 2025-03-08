@@ -63,7 +63,8 @@ class CounterRepositoryRemote extends CounterRepository {
   Future<Result> multiplication() async => await _updateCounter(_counter * 2);
 
   @override
-  Future<Result> division() async => await _updateCounter(_counter ~/ 2);
+  Future<Result> division({required int numberToDivide}) async =>
+      await _updateCounter(_counter ~/ numberToDivide);
 
   @override
   Future<Result> clearCounter() async => await _updateCounter(0);

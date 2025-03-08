@@ -18,6 +18,7 @@ class _CounterDetailViewState extends State<CounterDetailView> {
   late final MultiplicationViewModel _multiplicationViewModel;
   late final DivisionViewModel _divisionViewModel;
   late final CounterClearerVidewModel _counterClearerVidewModel;
+  final numberToDivide = TextEditingController();
 
   @override
   void initState() {
@@ -76,6 +77,9 @@ class _CounterDetailViewState extends State<CounterDetailView> {
             CounterClearerButton(
               counterClearerVidewModel: _counterClearerVidewModel,
             ),
+            NumberToDivideTextField(
+              numberToDivide: numberToDivide,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -91,6 +95,7 @@ class _CounterDetailViewState extends State<CounterDetailView> {
                 ),
                 DivisionButton(
                   divisionViewModel: _divisionViewModel,
+                  numberToDivide: numberToDivide,
                 ),
               ],
             )
